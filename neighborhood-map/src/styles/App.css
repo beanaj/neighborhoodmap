@@ -10,14 +10,14 @@ body {
 }
 
 body, .app {
-    background: white;
+    background: black
 }
 
 .app{
     display: flex;
     align-content: center;
     flex-direction: column;
-
+    justify-content: center;
 }
 
 .header {
@@ -40,15 +40,33 @@ body, .app {
 .mapBox {
     color: whitesmoke;
     width: 100%;
+    height: 400px;
 }
 
 .map{
     width: 100%;
-    height: 500px;
+    height: 100%;
+}
+
+.round{
+    border-radius: 25px;
 }
 
 .footer{
-    background-color: black;
-    width: 100%;
+    background-color: #101010;
+    width: 98%;
     color:whitesmoke;
+    display: flex;
+    flex-direction: row-reverse;
+    ju
+}
+
+.details{
+    background-color: #1f1f1f;
+    width: 15%;
+}
+
+.places{
+    background-color: #1f1f1f;
+    width: 75%;
 }

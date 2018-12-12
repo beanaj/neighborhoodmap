@@ -3,7 +3,6 @@ import Map from './Map'
 import {GoogleApiWrapper} from 'google-maps-react';
 
 export class MapBox extends React.Component {
-
     render() {
         if(!this.props.loaded){
             return <div>Loading...</div>
