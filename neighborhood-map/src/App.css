@@ -1,9 +1,12 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i');
+
 html, body, .root {
   height: 100%;
 }
 
 body {
   line-height: 1.5;
+  font-family: 'Roboto', sans-serif;
 }
 
 body, .app {
@@ -13,4 +16,21 @@ body, .app {
 .header{
   background-color: black;
   color: whitesmoke;
+  position: fixed;
+  width: 100%;
+  top:0;
+  left:0;
+  z-index: 10;
+  display:flex;
+  justify-content: center
 }
+
+.header h1{
+  text-align: center;
+  font-size: 48px;
+  font-style: italic;
+  font-weight: 300;
+  line-height: 0.75;
+  letter-spacing: -1.5px;
+}
+
