@@ -6,7 +6,6 @@ import mapStyle from '../styles/mapStyle'
 export class Map extends React.Component {
     componentDidUpdate(prevProps, prevState) {
         if (prevProps.google !== this.props.google) {
-            console.log('Here');
             this.loadMap()
         }
     }
@@ -23,7 +22,7 @@ export class Map extends React.Component {
             const mapRef = this.refs.map;
             const node = ReactDOM.findDOMNode(mapRef);
 
-            let zoom = 15.5;
+            let zoom = 15.3;
             let lat = 41.881036;
             let lng = -87.625984;
             const center = new maps.LatLng(lat, lng);
@@ -32,17 +31,17 @@ export class Map extends React.Component {
                 zoom: zoom,
                 styles: mapStyle
             });
-            this.map = new maps.Map(node, mapConfig);
+
+            let almostMap = new maps.Map(node, mapConfig);
+            let transitLayer = new google.maps.TransitLayer();
+            transitLayer.setMap(almostMap);
+            this.map = almostMap;
         }
     }
 
     render() {
-        const style = {
-            width: '100vw',
-            height: '100vh'
-        }
         return (
-            <div style={style} ref='map'>
+            <div className='map' ref='map'>
                 Loading map here...
             </div>
         )
