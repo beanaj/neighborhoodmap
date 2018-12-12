@@ -54,10 +54,10 @@
   },
   {
     "featureType": "poi",
-    "elementType": "geometry",
+    "elementType": "all",
     "stylers": [
       {
-        "color": "#dfd2ae"
+        "visibility": "off"
       }
     ]
   },
@@ -74,6 +74,9 @@
     "featureType": "poi.park",
     "elementType": "geometry.fill",
     "stylers": [
+      {
+        "visibility":"on"
+      },
       {
         "color": "#a5b076"
       }
@@ -166,6 +169,9 @@
     "stylers": [
       {
         "color": "#ebe3cd"
+      },
+      {
+        "weight": 8
       }
     ]
   },
@@ -175,6 +181,15 @@
     "stylers": [
       {
         "color": "#dfd2ae"
+      }
+    ]
+  },
+  {
+    "featureType": "transit.station.bus",
+    "elementType": "all",
+    "stylers": [
+      {
+        "visibility": "off"
       }
     ]
   },
