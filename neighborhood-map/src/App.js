@@ -15,9 +15,13 @@ class App extends Component {
     async initializeVenuesFromFourSquare(){
         //batch the requests into 3 requests
         let fq = new FourSquareAPI(venues);
-        let data = await fq.getVenueData()
-        console.log('here');
-        console.log(data)
+        try{
+            let data = await fq.getVenueData();
+            console.log('pass');
+            console.log(data)
+        }catch (e) {
+            console.log(`Fail ${e}`);
+        }
     }
 
     componentDidMount(){

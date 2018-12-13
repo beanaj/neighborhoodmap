@@ -28,16 +28,11 @@ class FourSquareAPI {
             fetch(url, {
                 method: 'GET'
             }).then(response => {
-                let codes = [];
-                response.responses.forEach(item=>{
-                    codes.push(item.meta.code);
-                });
                 if (response.status === 200) {
                     resolve(response.json());
                 } else {
                     reject('ERR: Problem getting FourSquare Data');
                 }
-
             })
         })
     }
