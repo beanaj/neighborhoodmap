@@ -11,7 +11,6 @@ body {
 
 body, .app {
     background: black;
-    height: 100%;
 }
 
 h3 {
@@ -23,7 +22,7 @@ h3 {
     display: flex;
     align-content: center;
     flex-direction: column;
-    justify-content: center;
+    align-content: center;
 }
 
 .header {
@@ -60,12 +59,11 @@ h3 {
 
 .footer {
     background-color: #101010;
-    width: 98%;
+    width: 100%;
     color: whitesmoke;
     display: flex;
     flex-direction: row-reverse;
     justify-content: space-around;
-    min-width: 320px;
 }
 
 .details {
@@ -103,7 +101,6 @@ h3 {
 .place {
     margin: 5px;
     padding: 15px;
-    max-height: 40px;
     font-weight: bold;
     display: flex;
     flex-direction: column;
@@ -114,10 +111,11 @@ h3 {
     text-align: center;
     margin: 5px;
     padding: 15px;
-    height: 40px;
     display: flex;
+    max-height: 50px;
     flex-direction: column;
     align-content: center;
+    justify-content: center;
 }
 
 .smallLabel {
@@ -176,13 +174,64 @@ h3 {
     filter: grayscale(80%);
 }
 
-/*Media Rule for 768px width*/
-@media screen and (max-width: 320px) {
-    details {
-        width: 100%;
+/*Media Rule for 320 width*/
+@media only screen and (max-width: 320px) {
+
+    .header h1{
+        font-size: 36px;
     }
 
-    places {
+    .footer{
+        flex-wrap: wrap-reverse;
+    }
+
+    .details {
         width: 100%;
+        font-size: 10px;
+        padding: 10px;
+    }
+
+    .smallLabel{
+        font-size: 8px;
+    }
+
+    .places {
+        width: 100%;
+        font-size: 10px;
+    }
+
+    .mapBox{
+        height:300px;
+    }
+}
+
+/*Media Rule for 768 width*/
+@media only screen and (min-width: 321px) and (max-width: 768px){
+
+    .header h1{
+        font-size: 36px;
+    }
+
+    .footer{
+        flex-wrap: wrap-reverse;
+    }
+
+    .details {
+        width: 100%;
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .smallLabel{
+        font-size: 12px;
+    }
+
+    .places {
+        width: 100%;
+        font-size: 14px;
+    }
+
+    .mapBox{
+        height:300px;
     }
 }

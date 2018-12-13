@@ -74,6 +74,7 @@ export class Footer extends React.Component {
                     <div className='tag round bcGreen gs20'>
                         <div className='smallLabel'>Address</div>
                         230 S Wabash Ave, Chicago, IL 60604
+
                     </div>
                     <div className='tag round bcGreen gs40'>
                         <div className='smallLabel'>Phone</div>
