@@ -1,3 +1,5 @@
+const fetchJsonp = require('fetch-jsonp');
+
 /**
  * Helper class to work with FourSquare API
  * @author Andrew Jacobsen
@@ -23,15 +25,13 @@ class YelpAPI {
 
 
     makeRequest(id) {
-        let url = `${this.businessUrl}${id}`;
-        let authHead = new Headers({
-            Authorization: 'Bearer k3UvqNHUEO3V7-ZqZ-PVlfGrmWUEz90g-jPaQSoBrg5ZlGUD0pB7uLOIeOCbJ6z5upbpsqMqegA6LEA6ft6cl7NSDHasMQenJE7HeuuUjvab_2ZvKDHcZZu8KooSXHYx',
-            'Access-Control-Allow-Origin': '*'
-        });
+        let url = `${this.businessUrl}${id}.jsonp`;
         return new Promise((resolve, reject) => {
-            fetch(url, {
+            fetchJsonp(url, {
                 method: 'GET',
-                headers: authHead
+                headers: {
+                    'Authorization': `Bearer ${this.clientSecret}`
+                }
             }).then(response => {
                 if (response.status === 200) {
                     resolve(response.json());
