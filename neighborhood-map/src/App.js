@@ -1,16 +1,29 @@
 import React, {Component} from 'react';
 import Header from './components/Header';
 import './styles/App.css';
-import MapBox from "./components/MapBox";
-import Footer from "./components/Footer";
-
-//Constants (In our case, the list of venueIDs used by FourSquare to get the data for our Places.
-// const venueIDs = [
-//     ''
-// ];
+import MapBox from './components/MapBox';
+import Footer from './components/Footer';
+import FourSquareAPI from './api/FourSquareAPI'
+//Import the venue ids and categories I selected for the project
+import venues from './data/venues'
 
 class App extends Component {
-    state = {};
+    state = {
+        places:[]
+    };
+
+    async initializeVenuesFromFourSquare(){
+        //batch the requests into 3 requests
+        let fq = new FourSquareAPI(venues);
+        let data = await fq.getVenueData()
+        console.log('here');
+        console.log(data)
+    }
+
+    componentDidMount(){
+        //Initialize the data for the venues
+        this.initializeVenuesFromFourSquare();
+    }
 
     render() {
         return (
@@ -19,7 +32,9 @@ class App extends Component {
                     title={"IN THE LOOP"}
                 />
                 <MapBox/>
-                <Footer/>
+                <Footer
+                    places={this.state.places}
+                />
             </div>
         );
     }

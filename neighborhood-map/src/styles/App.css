@@ -163,7 +163,7 @@ h3 {
 }
 
 .gs40 {
-    filter: grayscale(40%);
+    filter: grayscale(0%);
 }
 
 .gs60 {
@@ -172,6 +172,10 @@ h3 {
 
 .gs80 {
     filter: grayscale(80%);
+}
+
+.selected{
+    border-left: 35px solid whitesmoke;
 }
 
 /*Media Rule for 320 width*/

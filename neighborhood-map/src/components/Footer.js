@@ -1,69 +1,22 @@
 import React from 'react'
-
+import Place from './Place'
 
 export class Footer extends React.Component {
+    state ={}
     render() {
         return (
             <div className='round footer'>
                 <div className='places'>
                     <h3>Places</h3>
-                    <div className='place round bcGreen'>
-                        <div className='smallLabel'>Retail</div>
-                        Central Camera Company
-                    </div>
-                    <div className='place round bcPink gs40'>
-                        <div className='smallLabel'>Accomodation</div>
-                        Hostelling International Chicago
-                    </div>
-                    <div className='place round bcRed gs40'>
-                        <div className='smallLabel'>Art</div>
-                        The Art Institute of Chicago
-                    </div>
-                    <div className='place round bcOrange gs40'>
-                        <div className='smallLabel'>Activites</div>
-                        Urban Kayaks
-                    </div>
-                    <div className='place round bcBlue gs40'>
-                        <div className='smallLabel'>Bar</div>
-                        London House Rooftop Bar
-                    </div>
-                    <div className='place round bcPurple gs40'>
-                        <div className='smallLabel'>Food</div>
-                        America's Dog
-                    </div>
-                    <div className='place round bcRed gs40'>
-                        <div className='smallLabel'>Art</div>
-                        Cloud Gate by Anish Kapoor
-                    </div>
-                    <div className='place round bcPink gs40'>
-                        <div className='smallLabel'>Accomodation</div>
-                        Radisson Blu Aqua Hotel, Chicago, IL
-                    </div>
-                    <div className='place round bcBrown gs40'>
-                        <div className='smallLabel'>City Services</div>
-                        Chicago Public Library
-                    </div>
-                    <div className='place round bcPurple gs40'>
-                        <div className='smallLabel'>Food</div>
-                        Giordano's
-                    </div>
-                    <div className='place round bcBlue gs40'>
-                        <div className='smallLabel'>Bar</div>
-                        Cindy's
-                    </div>
-                    <div className='place round bcBrown gs40'>
-                        <div className='smallLabel'>City Services</div>
-                        Chicago Union Station
-                    </div>
-                    <div className='place round bcGreen gs40'>
-                        <div className='smallLabel'>Retail</div>
-                        After-Words New & Used Books
-                    </div>
-                    <div className='place round bcGreen gs40'>
-                        <div className='smallLabel'>Retail</div>
-                        Barnes & Noble
-                    </div>
-
+                    {this.props.places.map((place) =>{
+                        return(
+                            <Place
+                                title={place.category}
+                                name={place.name}
+                                />
+                        )
+                    })
+                    }
                 </div>
                 <div className='details'>
                     <h3>Details</h3>
