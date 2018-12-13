@@ -3,9 +3,9 @@ import Header from './components/Header';
 import './styles/App.css';
 import MapBox from './components/MapBox';
 import Footer from './components/Footer';
-import FourSquareAPI from './api/FourSquareAPI'
+import YelpAPI from './api/YelpAPI'
 //Import the venue ids and categories I selected for the project
-import venues from './data/venues'
+import businesses from './data/businesses'
 
 class App extends Component {
     state = {
@@ -14,7 +14,7 @@ class App extends Component {
 
     async initializeVenuesFromFourSquare(){
         //batch the requests into 3 requests
-        let fq = new FourSquareAPI(venues);
+        let fq = new YelpAPI(businesses);
         try{
             let data = await fq.getVenueData();
             console.log('pass');
