@@ -10,10 +10,16 @@ body {
 }
 
 body, .app {
-    background: black
+    background: black;
+    height: 100%;
 }
 
-.app{
+h3 {
+    letter-spacing: 0;
+    font-weight: 400;
+}
+
+.app {
     display: flex;
     align-content: center;
     flex-direction: column;
@@ -43,30 +49,140 @@ body, .app {
     height: 400px;
 }
 
-.map{
+.map {
     width: 100%;
     height: 100%;
 }
 
-.round{
-    border-radius: 25px;
+.round {
+    border-radius: 50px;
 }
 
-.footer{
+.footer {
     background-color: #101010;
     width: 98%;
-    color:whitesmoke;
+    color: whitesmoke;
     display: flex;
     flex-direction: row-reverse;
-    ju
+    justify-content: space-around;
+    min-width: 320px;
 }
 
-.details{
-    background-color: #1f1f1f;
-    width: 15%;
+.details {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    background-color: #1f2121;
+    width: 40%;
+    margin: 20px;
+    border-radius: 10px;
 }
 
-.places{
-    background-color: #1f1f1f;
-    width: 75%;
+.details h3 {
+    text-align: center;
+    width: 100%;
+}
+
+.places {
+    background-color: #1f2121;
+    width: 60%;
+    margin: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.places h3 {
+    text-align: center;
+    width: 100%;
+}
+
+.place {
+    margin: 5px;
+    padding: 15px;
+    max-height: 40px;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+
+.tag {
+    text-align: center;
+    margin: 5px;
+    padding: 15px;
+    height: 40px;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+
+.smallLabel {
+    font-weight: 300;
+    font-size: 14px;
+    width: 100%;
+    text-align: center;
+    line-height: 1;
+}
+
+.bcRed {
+    background: #c60c30;
+}
+
+.bcBlue {
+    background: #00a1de;
+}
+
+.bcBrown {
+    background: #62361b;
+}
+
+.bcGreen {
+    background: #009b3a;
+}
+
+.bcOrange {
+    background: #f9461c;
+}
+
+.bcPurple {
+    background: #522398;
+}
+
+.bcPink {
+    background: #e27ea6;
+}
+
+.bcYellow {
+    background-color: #f9e300;
+}
+
+.gs20 {
+    filter: grayscale(20%);
+}
+
+.gs40 {
+    filter: grayscale(40%);
+}
+
+.gs60 {
+    filter: grayscale(60%);
+}
+
+.gs80 {
+    filter: grayscale(80%);
+}
+
+/*Media Rule for 768px width*/
+@media screen and (max-width: 320px) {
+    details {
+        width: 100%;
+    }
+
+    places {
+        width: 100%;
+    }
 }
