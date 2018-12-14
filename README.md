@@ -45,7 +45,7 @@ The initial load speed of the application may be slower than subsequent loads. U
 
 The Google Maps API does not allow for the caching of the Map component, however all other content is cached.
 
-##Attributions
+## Attributions
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 The provided Service Worker is used for caching API requests.
