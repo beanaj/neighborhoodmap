@@ -16,9 +16,11 @@ class App extends Component {
         //batch the requests into 3 requests
         let fq = new YelpAPI(businesses);
         try{
-            let data = await fq.getVenueData();
-            console.log('pass');
-            console.log(data)
+            let data = fq.getVenueData();
+            data.forEach(async(request)=>{
+                let individual = await request;
+                console.log(individual)
+            });
         }catch (e) {
             console.log(`Fail ${e}`);
         }

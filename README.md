@@ -1,6 +1,16 @@
 # neighborhoodmap
 Final Project for the Udacity Nanodegree
 
+
+## To Run
+
+In order to run the project ```nodemon``` and ```yarn``` must be installed globally.
+
+```
+npm i nodemon -g
+npm i yarn -g
+```
+ 
 ##Attributions
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
