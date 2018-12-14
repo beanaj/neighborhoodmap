@@ -19,6 +19,10 @@ class Utility {
                 return 'tag round';
         }
     }
+
+    formatPhone(number){
+        return `${number.slice(0,2)} ${number.slice(2,5)}-${number.slice(5,8)}-${number.slice(8)}`;
+    }
 }
 
 export default new Utility()

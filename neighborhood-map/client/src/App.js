@@ -12,7 +12,10 @@ import businesses from './data/businesses'
 class App extends Component {
     state = {
         places:[],
-        reload: false
+        reload: false,
+        selectedPlace: {
+            initial:true
+        }
     };
 
     async initializeVenuesFromFourSquare(){
@@ -51,11 +54,12 @@ class App extends Component {
     }
 
     changeSelected = (key) =>{
-        this.resetCurrentSelection()
+        this.resetCurrentSelection();
         let newPlaces = this.state.places.map(place=>{
             if(place.data.id===key){
                 place.data.selected=true;
                 place.data.placesStyle = `${place.data.placesStyle} selected`;
+                this.setState({selectedPlace:place});
             }
             return place;
         });
@@ -74,6 +78,7 @@ class App extends Component {
                 />
                 <Footer
                     places={this.state.places}
+                    selectedPlace={this.state.selectedPlace}
                     reload={this.state.reload}
                     changeSelected={this.changeSelected}
                 />
