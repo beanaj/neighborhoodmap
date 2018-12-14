@@ -1,6 +1,15 @@
+//Import custom image icons for markers
+import bcRed from '../icons/red.png'
+import bcPurple from '../icons/purple.png'
+import bcPink from '../icons/pink.png'
+import bcOrange from '../icons/orange.png'
+import bcGreen from '../icons/green.png'
+import bcBrown from '../icons/brown.png'
+import bcBlue from '../icons/blue.png'
+
 class Utility {
-    getStyleByCategory(category){
-        switch(category) {
+    getStyleByCategory(category) {
+        switch (category) {
             case 'Retail':
                 return 'tag round bcGreen';
             case 'Accommodations':
@@ -20,9 +29,33 @@ class Utility {
         }
     }
 
-    formatPhone(number){
-        return `${number.slice(0,2)} ${number.slice(2,5)}-${number.slice(5,8)}-${number.slice(8)}`;
+    formatPhone(number) {
+        return `${number.slice(0, 2)} ${number.slice(2, 5)}-${number.slice(5, 8)}-${number.slice(8)}`;
     }
+
+    getColorIcon(style, marker, bool) {
+        if (bool) {
+            marker.setIcon({});
+        } else if (style.includes('Blue')) {
+            marker.setIcon(bcBlue);
+        } else if (style.includes('Brown')) {
+            marker.setIcon(bcBrown);
+        } else if (style.includes('Green')) {
+            marker.setIcon(bcGreen);
+        } else if (style.includes('Orange')) {
+            marker.setIcon(bcOrange);
+        } else if (style.includes('Pink')) {
+            marker.setIcon(bcPink);
+        } else if (style.includes('Purple')) {
+            marker.setIcon(bcPurple);
+        } else if (style.includes('Red')) {
+            marker.setIcon(bcRed);
+        } else {
+            marker.setIcon({});
+        }
+    }
+
+
 }
 
 export default new Utility()

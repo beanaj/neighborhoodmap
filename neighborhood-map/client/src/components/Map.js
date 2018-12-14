@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import mapStyle from '../styles/mapStyle'
-
+import utility from '../utilities/utility'
 
 export class Map extends React.Component {
     state = {
@@ -47,6 +47,8 @@ export class Map extends React.Component {
             this.map = almostMap;
         }
     }
+
+
 
     fixMarkers(){
         const {google} = this.props;
@@ -109,6 +111,8 @@ export class Map extends React.Component {
             marker.addListener('click', function() {
                 infowindow.open(map, marker);
             });
+
+            utility.getColorIcon(placeByID[id].placesStyle, marker, placeByID[id].selected);
 
             rememberedOnes.push({
                 id:id,
