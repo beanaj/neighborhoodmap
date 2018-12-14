@@ -65,26 +65,26 @@ export class Map extends React.Component {
             if(place.data.shown){
                shownPlace[place.data.id]=place.data;
             }
+            return place;
         });
         //Get the ID of the selected place
         let selectedID = '';
-        this.props.places.map(place => {
+        this.props.places.forEach(place => {
             if(place.data.selected===true){
                 selectedID = place.data.id;
             }
-            return;
         });
 
         //Make sure any existing places that do not have existing markers get them
         const forgottenOnes = [];
-        placeIDs.map(placeID=>{
+        placeIDs.forEach(placeID=>{
             if(!markerIDs[placeID]){
                 forgottenOnes.push(placeID);
             }
         });
         //Don't forget to keep track of the new markers
         const rememberedOnes = [];
-        forgottenOnes.map(id =>{
+        forgottenOnes.forEach(id =>{
             let marker = new google.maps.Marker({
                 position: {
                     lat: placeByID[id].coordinates.latitude,
@@ -96,7 +96,7 @@ export class Map extends React.Component {
             rememberedOnes.push({
                 id:id,
                 marker:marker
-            })
+            });
         });
 
         //Combine the old and the new markers
@@ -105,7 +105,7 @@ export class Map extends React.Component {
         //Make sure any not show places are hidden
         //Make sure the selected place bounces
         console.log(selectedID);
-        existingMarkers.map(markerObj =>{
+        existingMarkers.forEach(markerObj =>{
                 if(!shownPlace[markerObj.id]){
                     markerObj.marker.setMap(null);
                 }
