@@ -24,6 +24,7 @@ class App extends Component {
                 //As the requests roll in, add the variables to the places state
                 let individualRequest = await request;
                     individualRequest.data.placesStyle = utility.getStyleByCategory(individualRequest.data.category);
+                    individualRequest.data.shown = true;
                     let newPlaces = this.state.places.concat(individualRequest);
                     this.setState({places:newPlaces});
             });
@@ -38,6 +39,30 @@ class App extends Component {
         this.initializeVenuesFromFourSquare();
     }
 
+    resetCurrentSelection(){
+        let newPlaces = this.state.places.map(place=>{
+            if(place.data.selected===true){
+                place.data.selected=false;
+                place.data.placesStyle=place.data.placesStyle.replace('selected', '');
+            }
+            return place;
+        });
+        this.setState({places:newPlaces});
+    }
+
+    changeSelected = (key) =>{
+        this.resetCurrentSelection()
+        let newPlaces = this.state.places.map(place=>{
+            if(place.data.id===key){
+                place.data.selected=true;
+                place.data.placesStyle = `${place.data.placesStyle} selected`;
+            }
+            return place;
+        });
+        this.setState({places:newPlaces});
+    }
+
+
     render() {
         return (
             <div className="app">
@@ -50,6 +75,7 @@ class App extends Component {
                 <Footer
                     places={this.state.places}
                     reload={this.state.reload}
+                    changeSelected={this.changeSelected}
                 />
             </div>
         );

@@ -30,9 +30,11 @@ export class Footer extends React.Component {
                         return(
                             <Place
                                 key={place.data.id}
+                                id={place.data.id}
                                 style={place.data.placesStyle}
                                 category={place.data.category}
                                 name={place.data.name}
+                                changeSelected={this.props.changeSelected}
                                 />
                         )
                     })

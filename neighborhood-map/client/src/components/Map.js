@@ -44,16 +44,23 @@ export class Map extends React.Component {
 
     fixMarkers(){
         const {google} = this.props;
-        let newMap = this.map;
         this.props.places.map(place =>{
-            let marker = new google.maps.Marker({
-                position: {
-                    lat: place.data.coordinates.latitude,
-                    lng: place.data.coordinates.longitude
-                },
-                map: this.map,
-                title: place.data.name
-            });
+            if(place.data.shown){
+                let ani = {}
+                if(place.data.selected){
+                    ani = {};
+                }
+                new google.maps.Marker({
+                    position: {
+                        lat: place.data.coordinates.latitude,
+                        lng: place.data.coordinates.longitude
+                    },
+                    animation: ani,
+                    map: this.map,
+                    title: place.data.name
+                });
+            }
+            return place;
         })
     }
 

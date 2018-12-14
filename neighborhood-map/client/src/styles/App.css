@@ -115,6 +115,10 @@ h3 {
     align-content: space-around;
 }
 
+.placeListItem{
+    cursor: pointer;
+}
+
 
 .smallLabel {
     font-weight: 300;

@@ -1,12 +1,19 @@
 import React from 'react'
 
-const Place = ({category, name, style}) =>{
-    return (
-        <div className={style}>
-                <div className='smallLabel'>{category}</div>
-                {name}
-        </div>
-    )
+class Place extends React.Component {
+
+    handleSelection = () => {
+       this.props.changeSelected(this.props.id);
+    };
+
+    render(){
+        return (
+            <div className={`${this.props.style} placeListItem`} onClick={this.handleSelection}>
+                <div className='smallLabel'>{this.props.category}</div>
+                {this.props.name}
+            </div>
+        )
+    }
 };
 
 export default Place
