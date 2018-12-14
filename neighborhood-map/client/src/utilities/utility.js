@@ -10,6 +10,8 @@ import bcBlue from '../icons/blue.png'
 class Utility {
     getStyleByCategory(category) {
         switch (category) {
+            case 'All':
+                return 'tag round bcWhitesmoke';
             case 'Retail':
                 return 'tag round bcGreen';
             case 'Accommodations':

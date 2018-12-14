@@ -1,6 +1,7 @@
 import React from 'react'
 import Place from './Place'
 import SelectedPlace from './SelectedPlace'
+import FilterTag from "./FilterTag";
 
 export class Footer extends React.Component {
     state = {
@@ -27,16 +28,19 @@ export class Footer extends React.Component {
                 <div className='places'>
                     <h3>Places</h3>
                     {this.props.places.map((place) => {
-                        return (
-                            <Place
-                                key={place.data.id}
-                                id={place.data.id}
-                                style={place.data.placesStyle}
-                                category={place.data.category}
-                                name={place.data.name}
-                                changeSelected={this.props.changeSelected}
-                            />
-                        )
+                        if(place.data.shown) {
+                            return (
+                                <Place
+                                    key={place.data.id}
+                                    id={place.data.id}
+                                    style={place.data.placesStyle}
+                                    category={place.data.category}
+                                    name={place.data.name}
+                                    changeSelected={this.props.changeSelected}
+                                />
+                            )
+                        }
+                        return null;
                     })
                     }
                     {this.props.reload ? (<div className='tag loadMore round'><a href=".">LOAD MORE</a></div>): ''}
@@ -50,6 +54,18 @@ export class Footer extends React.Component {
                 ) : (<div className='details'>
                         <h3>Details</h3><p>Select a Place to get started!</p></div>
                 )}
+                <div className='filter'>
+                    {this.props.categories.map((category)=>{
+                        return (
+                            <FilterTag
+                                key={category}
+                                category={category}
+                                changeFilter={this.props.changeFilter}
+                            />
+                        )
+                    })
+                    }
+                </div>
 
             </div>
         )
