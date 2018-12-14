@@ -2,8 +2,26 @@ import React from 'react'
 import Place from './Place'
 
 export class Footer extends React.Component {
-    state ={}
+    state ={
+        notLoaded: ''
+    };
+
+    ensureLoaded(){
+        if(this.props.reload===true){
+            this.setState({notLoaded:'Oh no! There was a problem loading the places, please refresh the page.'})
+        }else if(this.state.notLoaded.length>1){
+            this.setState({notLoaded:''})
+        }
+    }
+
+    componentDidMount(){
+        this.ensureLoaded();
+    }
+
+
+
     render() {
+
         return (
             <div className='round footer'>
                 <div className='places'>
@@ -11,12 +29,15 @@ export class Footer extends React.Component {
                     {this.props.places.map((place) =>{
                         return(
                             <Place
-                                title={place.category}
-                                name={place.name}
+                                key={place.data.id}
+                                style={place.data.placesStyle}
+                                category={place.data.category}
+                                name={place.data.name}
                                 />
                         )
                     })
                     }
+                    <div className='smallLabel'>{this.state.notLoaded}</div>
                 </div>
                 <div className='details'>
                     <h3>Details</h3>
@@ -33,7 +54,7 @@ export class Footer extends React.Component {
                         <div className='smallLabel'>Phone</div>
                         (312) 427-5580
                     </div>
-                    <div className='tag round bcGreen gs60'>
+                    <div className='tag round bcGreen'>
                         <div className='smallLabel'>Rating</div>
                         7.5/10
                     </div>

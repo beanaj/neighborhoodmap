@@ -45,7 +45,7 @@ h3 {
 .mapBox {
     color: whitesmoke;
     width: 100%;
-    height: 400px;
+    height: 600px;
 }
 
 .map {
@@ -54,7 +54,12 @@ h3 {
 }
 
 .round {
+    text-align: center;
     border-radius: 50px;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    line-height: 0.5;
 }
 
 .footer {
@@ -70,9 +75,10 @@ h3 {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    flex-basis: fit-content;
     justify-content: space-evenly;
     background-color: #1f2121;
-    width: 40%;
+    max-width: 30%;
     margin: 20px;
     border-radius: 10px;
 }
@@ -83,14 +89,15 @@ h3 {
 }
 
 .places {
-    background-color: #1f2121;
-    width: 60%;
-    margin: 20px;
-    border-radius: 10px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    flex-basis: content;
     justify-content: space-evenly;
+    background-color: #1f2121;
+    max-width: 60%;
+    margin: 20px;
+    border-radius: 10px;
 }
 
 .places h3 {
@@ -98,29 +105,22 @@ h3 {
     width: 100%;
 }
 
-.place {
+.tag {
     margin: 5px;
     padding: 15px;
     font-weight: bold;
-    display: flex;
-    flex-direction: column;
-    align-content: center;
+    min-width: 100px;
+    align-items: center;
+    justify-items: center;
+    align-content: space-around;
 }
 
-.tag {
-    text-align: center;
-    margin: 5px;
-    padding: 15px;
-    display: flex;
-    max-height: 50px;
-    flex-direction: column;
-    align-content: center;
-    justify-content: center;
-}
 
 .smallLabel {
     font-weight: 300;
     font-size: 14px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     width: 100%;
     text-align: center;
     line-height: 1;
@@ -221,7 +221,7 @@ h3 {
     }
 
     .details {
-        width: 100%;
+        min-width: 90%;
         font-size: 14px;
         padding: 10px;
     }
@@ -231,8 +231,9 @@ h3 {
     }
 
     .places {
-        width: 100%;
+        min-width: 90%;
         font-size: 14px;
+        padding: 10px;
     }
 
     .mapBox{

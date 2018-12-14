@@ -4,12 +4,15 @@ import './styles/App.css';
 import MapBox from './components/MapBox';
 import Footer from './components/Footer';
 import YelpAPI from './api/YelpAPI'
+import utility from './utilities/utility'
+
 //Import the venue ids and categories I selected for the project
 import businesses from './data/businesses'
 
 class App extends Component {
     state = {
-        places:[]
+        places:[],
+        reload: false
     };
 
     async initializeVenuesFromFourSquare(){
@@ -18,11 +21,15 @@ class App extends Component {
         try{
             let data = fq.getVenueData();
             data.forEach(async(request)=>{
-                let individual = await request;
-                console.log(individual)
+                //As the requests roll in, add the variables to the places state
+                let individualRequest = await request;
+                    individualRequest.data.placesStyle = utility.getStyleByCategory(individualRequest.data.category);
+                    let newPlaces = this.state.places.concat(individualRequest);
+                    this.setState({places:newPlaces});
             });
+            this.setState({reload:false});
         }catch (e) {
-            console.log(`Fail ${e}`);
+            this.setState({reload:true});
         }
     }
 
@@ -37,9 +44,12 @@ class App extends Component {
                 <Header
                     title={"IN THE LOOP"}
                 />
-                <MapBox/>
+                <MapBox
+                    places={this.state.places}
+                />
                 <Footer
                     places={this.state.places}
+                    reload={this.state.reload}
                 />
             </div>
         );

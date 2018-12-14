@@ -19,15 +19,19 @@ class YelpAPI {
      * @returns {any[]}
      */
     getVenueData() {
-        const businessIDs = Object.keys(this.businesses).map(key => {
-            return key
-        });
-        //Returning individual promises so that we can begin to render the React page as the requests suceed.
-        return businessIDs.map(async id => {
-            let body = await this.makeRequest(id);
-            body.data.filterCategory = this.businesses[id].category;
-            return body;
-        });
+        try{
+            const businessIDs = Object.keys(this.businesses).map(key => {
+                return key
+            });
+            //Returning individual promises so that we can begin to render the React page as the requests suceed.
+            return businessIDs.map(async id => {
+                let body = await this.makeRequest(id);
+                body.data.category = this.businesses[id].category;
+                return body;
+            });
+        }catch (e) {
+            return e;
+        }
     };
 
     /**

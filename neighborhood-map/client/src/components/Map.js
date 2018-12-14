@@ -4,9 +4,11 @@ import mapStyle from '../styles/mapStyle'
 
 
 export class Map extends React.Component {
-    componentDidUpdate(prevProps, prevState) {
+    componentDidUpdate(prevProps) {
         if (prevProps.google !== this.props.google) {
             this.loadMap()
+        } else if(prevProps.places !== this.props.places){
+            this.fixMarkers();
         }
     }
 
@@ -32,11 +34,27 @@ export class Map extends React.Component {
                 styles: mapStyle
             });
 
+            //Add everything that needs to be added to the map
             let almostMap = new maps.Map(node, mapConfig);
             let transitLayer = new google.maps.TransitLayer();
             transitLayer.setMap(almostMap);
             this.map = almostMap;
         }
+    }
+
+    fixMarkers(){
+        const {google} = this.props;
+        let newMap = this.map;
+        this.props.places.map(place =>{
+            let marker = new google.maps.Marker({
+                position: {
+                    lat: place.data.coordinates.latitude,
+                    lng: place.data.coordinates.longitude
+                },
+                map: this.map,
+                title: place.data.name
+            });
+        })
     }
 
     render() {

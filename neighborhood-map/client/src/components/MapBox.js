@@ -10,6 +10,7 @@ export class MapBox extends React.Component {
         return(
             <div className="mapBox">
                 <Map google={this.props.google}
+                     places={this.props.places}
                 />
             </div>
         )

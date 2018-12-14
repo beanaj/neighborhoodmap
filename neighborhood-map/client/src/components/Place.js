@@ -1,10 +1,10 @@
 import React from 'react'
 
-const Place = ({category, name}) =>{
+const Place = ({category, name, style}) =>{
     return (
-        <div className='place round bcGreen selected'>
-            <div className='smallLabel'>{category}</div>
-            {name}
+        <div className={style}>
+                <div className='smallLabel'>{category}</div>
+                {name}
         </div>
     )
 };
