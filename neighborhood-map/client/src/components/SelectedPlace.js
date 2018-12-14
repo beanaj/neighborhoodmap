@@ -29,7 +29,7 @@ class SelectedPlace extends React.Component {
 
                 <div className={`${this.props.place.placesStyle.replace('selected', '')} gs80`}>
                     <div className='smallLabel'>Website</div>
-                    <a href={this.props.place.url} target='_blank'>Link</a>
+                    <a href={this.props.place.url} target='_blank' rel="noopener noreferrer">Link</a>
                 </div>
                 <div className='smallLabel'>Data Provided by Yelp</div>
             </div>

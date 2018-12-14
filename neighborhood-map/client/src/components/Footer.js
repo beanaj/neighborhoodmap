@@ -39,7 +39,7 @@ export class Footer extends React.Component {
                         )
                     })
                     }
-                    <div className='smallLabel'>{this.state.notLoaded}</div>
+                    {this.props.reload ? (<div className='tag loadMore round'><a href=".">LOAD MORE</a></div>): ''}
                 </div>
 
                 {!this.props.selectedPlace.initial ? (

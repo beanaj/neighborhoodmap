@@ -26,13 +26,19 @@ class App extends Component {
             data.forEach(async(request)=>{
                 //As the requests roll in, add the variables to the places state
                 let individualRequest = await request;
+                //If the request was successful, add the place
+                if(individualRequest.code===200){
                     individualRequest.data.placesStyle = utility.getStyleByCategory(individualRequest.data.category);
                     individualRequest.data.shown = true;
                     let newPlaces = this.state.places.concat(individualRequest);
                     this.setState({places:newPlaces});
+                }else{
+                    //If some of the requests fail, add a load more button
+                    this.setState({reload:true});
+                }
             });
-            this.setState({reload:false});
         }catch (e) {
+            //If some of the requests fail, add a load more button
             this.setState({reload:true});
         }
     }
@@ -44,6 +50,7 @@ class App extends Component {
 
     resetCurrentSelection(){
         let newPlaces = this.state.places.map(place=>{
+            //change current selection to false
             if(place.data.selected===true){
                 place.data.selected=false;
                 place.data.placesStyle=place.data.placesStyle.replace('selected', '');
@@ -54,8 +61,10 @@ class App extends Component {
     }
 
     changeSelected = (key) =>{
+        //Change the selected, first rest current
         this.resetCurrentSelection();
         let newPlaces = this.state.places.map(place=>{
+            //if key matches, change new selected
             if(place.data.id===key){
                 place.data.selected=true;
                 place.data.placesStyle = `${place.data.placesStyle} selected`;

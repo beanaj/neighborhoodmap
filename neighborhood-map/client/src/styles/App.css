@@ -86,6 +86,7 @@ h3 {
 .details h3 {
     text-align: center;
     width: 100%;
+    font-size: 24px;
 }
 
 .places {
@@ -103,6 +104,7 @@ h3 {
 .places h3 {
     text-align: center;
     width: 100%;
+    font-size: 24px;
 }
 
 .tag {
@@ -110,9 +112,10 @@ h3 {
     padding: 15px;
     font-weight: bold;
     min-width: 100px;
+    min-height: 60px;
     align-items: center;
-    justify-items: center;
     align-content: space-around;
+    line-height: 1;
 }
 
 .placeListItem{
@@ -130,6 +133,22 @@ h3 {
     line-height: 1;
 }
 
+.loadMore{
+    display: flex;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 18px;
+    font-style: italic;
+    text-align: center;
+    line-height: 1;
+    background-color: whitesmoke;
+}
+
+.loadMore a{
+    color: #1f2121;
+    padding: 5px;
+    text-decoration: none;
+}
 .bcRed {
     background: #c60c30;
 }
@@ -179,7 +198,7 @@ h3 {
 }
 
 .selected{
-    border-left: 35px solid whitesmoke;
+    border-left: 45px solid whitesmoke;
 }
 
 /*Media Rule for 320 width*/
@@ -194,7 +213,7 @@ h3 {
     }
 
     .details {
-        width: 100%;
+        min-width: 300px;
         font-size: 10px;
         padding: 10px;
     }
@@ -204,7 +223,7 @@ h3 {
     }
 
     .places {
-        width: 100%;
+        min-width: 300px;
         font-size: 10px;
     }
 
@@ -214,7 +233,7 @@ h3 {
 }
 
 /*Media Rule for 768 width*/
-@media only screen and (min-width: 321px) and (max-width: 768px){
+@media only screen and (min-width: 321px) and (max-width: 1300px){
 
     .header h1{
         font-size: 36px;
@@ -241,6 +260,6 @@ h3 {
     }
 
     .mapBox{
-        height:300px;
+        height:500px;
     }
 }

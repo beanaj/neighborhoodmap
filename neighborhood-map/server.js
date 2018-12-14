@@ -8,7 +8,7 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 //Must be limited because of yelp free tier restrictions
-const queueMw = queue({ activeLimit: 1, queuedLimit: 15});
+const queueMw = queue({ activeLimit: 3, queuedLimit: 15});
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
