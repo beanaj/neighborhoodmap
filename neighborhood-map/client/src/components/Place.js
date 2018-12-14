@@ -8,7 +8,7 @@ class Place extends React.Component {
 
     render(){
         return (
-            <div className={`${this.props.style} placeListItem`} onClick={this.handleSelection}>
+            <div className={`${this.props.style} placeListItem`} onClick={this.handleSelection} aria-label={`${this.props.name}`}>
                 <div className='smallLabel'>{this.props.category}</div>
                 {this.props.name}
             </div>
