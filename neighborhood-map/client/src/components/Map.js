@@ -4,10 +4,16 @@ import mapStyle from '../styles/mapStyle'
 
 
 export class Map extends React.Component {
+    state = {
+        markers:[],
+        lastSelected:''
+    };
     componentDidUpdate(prevProps) {
         if (prevProps.google !== this.props.google) {
             this.loadMap()
-        } else if(prevProps.places !== this.props.places){
+        }
+
+        if(prevProps.places !== this.props.places){
             this.fixMarkers();
         }
     }
@@ -44,25 +50,83 @@ export class Map extends React.Component {
 
     fixMarkers(){
         const {google} = this.props;
-        this.props.places.map(place =>{
+        const map = this.map;
+        //Get the existing markers IDS
+        let markerIDs = {};
+        this.state.markers.map(marker => markerIDs[marker.id]=true);
+        //Get the existing places ids
+        let placeIDs = this.props.places.map(place => place.data.id);
+        //Get existing places data
+        let placeByID = {};
+        this.props.places.map(place => placeByID[place.data.id]=place.data);
+        //Get the shown places ids
+        let shownPlace = {};
+        this.props.places.map(place => {
             if(place.data.shown){
-                let ani = {}
-                if(place.data.selected){
-                    ani = {};
-                }
-                new google.maps.Marker({
-                    position: {
-                        lat: place.data.coordinates.latitude,
-                        lng: place.data.coordinates.longitude
-                    },
-                    animation: ani,
-                    map: this.map,
-                    title: place.data.name
-                });
+               shownPlace[place.data.id]=place.data;
             }
-            return place;
-        })
-    }
+        });
+        //Get the ID of the selected place
+        let selectedID = '';
+        this.props.places.map(place => {
+            if(place.data.selected===true){
+                selectedID = place.data.id;
+            }
+            return;
+        });
+
+        //Make sure any existing places that do not have existing markers get them
+        const forgottenOnes = [];
+        placeIDs.map(placeID=>{
+            if(!markerIDs[placeID]){
+                forgottenOnes.push(placeID);
+            }
+        });
+        //Don't forget to keep track of the new markers
+        const rememberedOnes = [];
+        forgottenOnes.map(id =>{
+            let marker = new google.maps.Marker({
+                position: {
+                    lat: placeByID[id].coordinates.latitude,
+                    lng: placeByID[id].coordinates.longitude
+                },
+                map: map,
+                title: placeByID[id].name
+            });
+            rememberedOnes.push({
+                id:id,
+                marker:marker
+            })
+        });
+
+        //Combine the old and the new markers
+        const existingMarkers = this.state.markers.concat(rememberedOnes);
+        //Make sure any shown places are marked
+        //Make sure any not show places are hidden
+        //Make sure the selected place bounces
+        console.log(selectedID);
+        existingMarkers.map(markerObj =>{
+                if(!shownPlace[markerObj.id]){
+                    markerObj.marker.setMap(null);
+                }
+                if(shownPlace[markerObj.id]&&markerObj.marker.map===null){
+                    markerObj.marker.setMap(map);
+                    markerObj.marker.setAnimation({});
+                }
+                if(markerObj.id===selectedID){
+                    markerObj.marker.setAnimation(google.maps.Animation.BOUNCE);
+                }
+                if(markerObj.id===this.state.lastSelected){
+
+                    markerObj.marker.setAnimation({});
+                }
+            }
+        );
+
+        this.setState({markers: existingMarkers});
+        this.setState({lastSelected: selectedID});
+        }
+
 
     render() {
         return (
