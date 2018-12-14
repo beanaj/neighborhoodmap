@@ -85,6 +85,18 @@ export class Map extends React.Component {
         //Don't forget to keep track of the new markers
         const rememberedOnes = [];
         forgottenOnes.forEach(id =>{
+            var contentString = '';
+            if(placeByID[id].hours[0].is_open_now){
+                contentString = `<p style="color:black">Come on in, we are open now!</p>}`;
+            }else{
+                contentString = `<p style="color:black">Try again tomorrow, we are closed right now.</p>`;
+            }
+
+
+            var infowindow = new google.maps.InfoWindow({
+                content: contentString
+            });
+
             let marker = new google.maps.Marker({
                 position: {
                     lat: placeByID[id].coordinates.latitude,
@@ -93,6 +105,11 @@ export class Map extends React.Component {
                 map: map,
                 title: placeByID[id].name
             });
+
+            marker.addListener('click', function() {
+                infowindow.open(map, marker);
+            });
+
             rememberedOnes.push({
                 id:id,
                 marker:marker
@@ -104,7 +121,6 @@ export class Map extends React.Component {
         //Make sure any shown places are marked
         //Make sure any not show places are hidden
         //Make sure the selected place bounces
-        console.log(selectedID);
         existingMarkers.forEach(markerObj =>{
                 if(!shownPlace[markerObj.id]){
                     markerObj.marker.setMap(null);
