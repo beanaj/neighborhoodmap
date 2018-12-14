@@ -5,7 +5,11 @@ import {GoogleApiWrapper} from 'google-maps-react';
 export class MapBox extends React.Component {
     render() {
         if(!this.props.loaded){
-            return <div>Loading...</div>
+            return (
+                <div className="mapBox">
+                Map Loading...
+            </div>
+            )
         }
         return(
             <div className="mapBox">
