@@ -16,7 +16,8 @@ class App extends Component {
         selectedPlace: {
             initial: true
         },
-        filter: 'All'
+        filter: 'All',
+        filterShow: false
     };
 
     async initializeYelpData() {
@@ -105,12 +106,23 @@ class App extends Component {
         });
     };
 
+    displayFilter = () => {
+        if(this.state.filterShow){
+            this.setState({filterShow: false})
+        }else{
+            this.setState({filterShow: true})
+        }
+    }
 
     render() {
         return (
             <div className="app">
                 <Header
                     title={"IN THE LOOP"}
+                    categories={['All', 'Art', 'Accommodations', 'Activities', 'City Services', 'Bar', 'Food', 'Retail']}
+                    changeFilter={this.changeFilter}
+                    displayFilter={this.displayFilter}
+                    filterShow={this.state.filterShow}
                 />
                 <MapBox
                     places={this.state.places}
@@ -119,9 +131,7 @@ class App extends Component {
                     places={this.state.places}
                     selectedPlace={this.state.selectedPlace}
                     reload={this.state.reload}
-                    categories={['All', 'Art', 'Accommodations', 'Activities', 'City Services', 'Bar', 'Food', 'Retail']}
                     changeSelected={this.changeSelected}
-                    changeFilter={this.changeFilter}
                 />
             </div>
         );

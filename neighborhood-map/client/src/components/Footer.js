@@ -1,7 +1,6 @@
 import React from 'react'
 import Place from './Place'
 import SelectedPlace from './SelectedPlace'
-import FilterTag from "./FilterTag";
 
 export class Footer extends React.Component {
     state = {
@@ -54,18 +53,6 @@ export class Footer extends React.Component {
                 ) : (<div className='details'>
                         <h3>Details</h3><p>Select a Place to get started!</p></div>
                 )}
-                <div className='filter'>
-                    {this.props.categories.map((category)=>{
-                        return (
-                            <FilterTag
-                                key={category}
-                                category={category}
-                                changeFilter={this.props.changeFilter}
-                            />
-                        )
-                    })
-                    }
-                </div>
 
             </div>
         )
