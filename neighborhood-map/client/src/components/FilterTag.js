@@ -9,7 +9,7 @@ class FilterTag extends React.Component {
 
     render(){
         return (
-            <div className={`${utility.getStyleByCategory(this.props.category)} filterTag`} onClick={this.changeFilter}>
+            <div aria-label={`Filter Category ${this.props.category}`} className={`${utility.getStyleByCategory(this.props.category)} filterTag`} onClick={this.changeFilter}>
                 {this.props.category}
             </div>
         )
